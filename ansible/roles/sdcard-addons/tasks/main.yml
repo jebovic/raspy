@@ -16,6 +16,12 @@
     dest: "{{ raspy_sd_boot }}/ssh"
   when: boot.stat.islnk is defined
 
+- name: enable cgroups memory and cpu
+  template:
+    src: cmdline.txt.j2
+    dest: "{{ raspy_sd_boot }}/cmdline.txt"
+  when: boot.stat.islnk is defined
+
 - name: enable wifi
   template:
     src: wpa_supplicant.conf.j2
