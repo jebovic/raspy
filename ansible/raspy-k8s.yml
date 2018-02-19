@@ -1,0 +1,14 @@
+---
+
+- hosts: raspies
+  become: yes
+  become_method: sudo
+  roles:
+  - { name: docker, tags: [ 'docker'] }
+  - { name: kubeadm, tags: [ 'kubeadm'] }
+
+- hosts: masters
+  become: yes
+  become_method: sudo
+  roles:
+  - { name: k8s-master, tags: [ 'k8s-master'] }

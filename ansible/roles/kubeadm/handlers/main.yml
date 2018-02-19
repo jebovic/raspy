@@ -1,0 +1,6 @@
+---
+
+- name: restart kubeadm
+  service:
+    name: "{{ kubeadm_daemon }}"
+    state: restarted

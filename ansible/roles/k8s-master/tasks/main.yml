@@ -1,0 +1,9 @@
+---
+
+- name: kubeadm config
+  template:
+    src: kubeadm-master.yml.j2
+    dest: /etc/kubeadm-master.yml
+    owner: root
+    group: root
+    mode: 0700

@@ -1,0 +1,18 @@
+galaxy_info:
+  author: Jérémy Baumgarth
+  description: Install and configure kubeadm
+  company: Amiral Web
+  license: MIT
+  min_ansible_version: 2.1
+  github_branch: master
+  platforms:
+    - name: Ubuntu
+      versions:
+      - trusty
+      - xenial
+    - name: Debian
+      versions:
+      - jessie
+  galaxy_tags:
+    - kubeadm
+dependencies: []

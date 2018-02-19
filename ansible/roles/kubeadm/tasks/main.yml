@@ -1,0 +1,31 @@
+---
+
+- name: install key
+  apt_key:
+    url: "{{ kubeadm_apt_key_url }}"
+    state: present
+  register: kubeadm_key_installed
+
+- name: add repos
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+    update_cache: no
+  with_items: "{{ kubeadm_apt_repositories }}"
+  when: kubeadm_key_installed|success
+  register: kubeadm_repo_installed
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: kubeadm_repo_installed|changed
+
+- name: install apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    install_recommends: no
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items: "{{ kubeadm_packages }}"
+  when: kubeadm_repo_installed|success

@@ -1,0 +1,17 @@
+---
+
+raspy_sd_boot: /media/boot
+raspy_sd_rootfs: /media/rootfs
+
+raspy_wifi_ssid: changeIt
+raspy_wifi_password: changeIt
+
+raspy_admin_user: pi
+raspy_admin_user_group: pi
+raspy_admin_authorized_key: "REPLACE IT WITH YOUR RSA PUBLIC KEY"
+
+raspy_hostname: raspy01
+raspy_ip: 192.168.0.81
+raspy_router: 192.168.0.254
+raspy_dns: "192.168.0.254 8.8.8.8 8.8.4.4"
+raspy_wlan_interface: wlan0

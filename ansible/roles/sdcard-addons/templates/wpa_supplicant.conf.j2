@@ -1,0 +1,10 @@
+country=FR
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid="{{ raspy_wifi_ssid }}"
+    scan_ssid=1
+    psk="{{ raspy_wifi_password }}"
+    key_mgmt=WPA-PSK
+}

@@ -1,0 +1,9 @@
+---
+
+raspy_sd_boot: /media/jebovic/boot
+raspy_sd_rootfs: /media/jebovic/rootfs
+
+raspy_wifi_ssid: "{{ enc_raspy_wifi_ssid }}"
+raspy_wifi_password: "{{ enc_raspy_wifi_password }}"
+
+raspy_admin_authorized_key: "{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
