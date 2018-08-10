@@ -1,0 +1,7 @@
+---
+
+- hosts: clusterhat-masters
+  become: yes
+  become_method: sudo
+  roles:
+  - { name: clusterhat-master, tags: [ 'clusterhat', 'clusterhat-master'] }

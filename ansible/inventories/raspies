@@ -1,34 +1,44 @@
-raspy01 ansible_host=192.168.0.81 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
-raspy02 ansible_host=192.168.0.82 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
-raspy03 ansible_host=192.168.0.83 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
-raspy04 ansible_host=192.168.0.84 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
-#raspy05 ansible_host=192.168.0.85 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
-#raspy06 ansible_host=192.168.0.86 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
-#raspy07 ansible_host=192.168.0.87 ansible_user=pi ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
+raspy01 ansible_host=192.168.0.81
+raspy02 ansible_host=192.168.0.82
+raspy03 ansible_host=192.168.0.83
+raspy04 ansible_host=192.168.0.84
+raspy05 ansible_host=192.168.0.85
+raspy06 ansible_host=192.168.0.86
+raspy07 ansible_host=192.168.0.87
 
-[raspies]
-raspy[01:04]
+[raspies:children]
+raspy0
+raspy3
+
+[raspies:vars]
+ansible_user=pi
+ansible_ssh_private_key_file=/home/jebovic/.ssh/id_rsa
 
 [raspy0:children]
 raspy0w
 raspy0wh
 
 [raspy0w]
-raspy01
+raspy06
+raspy07
 
 [raspy0wh]
-raspy02
 raspy04
+raspy05
 
 [raspy3]
-raspy03
-#raspy05
-#raspy06
-
-[masters]
-raspy03
-
-[workers]
 raspy01
 raspy02
-raspy04
+raspy03
+
+[masters]
+raspy01
+
+[workers]
+raspy[02:07]
+
+[clusterhat-masters]
+raspy01
+
+[clusterhat-workers]
+raspy[04:07]

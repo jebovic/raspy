@@ -1,0 +1,35 @@
+image:
+  repo: "arm32v7/telegraf"
+  tag: "latest"
+single:
+  enabled: false
+daemonset:
+  enabled: true
+  config:
+    global_tags:
+      dc: "local-raspies"
+    agent:
+      interval: "30s"
+      round_interval: true
+      metric_batch_size: 1000
+      metric_buffer_limit: 10000
+      collection_jitter: "0s"
+      flush_interval: "10s"
+      flush_jitter: "0s"
+      precision: ""
+      debug: false
+      quiet: false
+      logfile: ""
+      hostname: "$HOSTNAME"
+      omit_hostname: false
+    outputs:
+      influxdb:
+        urls:
+          - "http://influxdb-influxdb.ilovemonitoring:8086"
+        database: "telegraf"
+        retention_policy: "telegraf"
+    inputs:
+      kubernetes:
+        url: "http://$HOSTNAME:10255"
+        bearer_token: "/var/run/secrets/kubernetes.io/serviceaccount/token"
+        insecure_skip_verify: true

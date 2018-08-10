@@ -1,0 +1,4 @@
+image:
+  repo: "arm32v7/influxdb"
+  tag: "latest"
+

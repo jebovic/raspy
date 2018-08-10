@@ -1,0 +1,7 @@
+image:
+  repository: "arm32v7/chronograf"
+  tag: "latest"
+
+service:
+  replicas: 1
+  type: NodePort

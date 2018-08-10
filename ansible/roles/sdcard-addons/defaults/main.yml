@@ -1,7 +1,9 @@
 ---
 
 raspy_sd_boot: /media/boot
+raspy_sd_boot_partition: /dev/sdc1
 raspy_sd_rootfs: /media/rootfs
+raspy_sd_rootfs_partition: /dev/sdc2
 
 raspy_wifi_ssid: changeIt
 raspy_wifi_password: changeIt

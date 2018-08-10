@@ -1,0 +1,33 @@
+---
+
+- name: install apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    install_recommends: no
+    update_cache: yes
+    cache_valid_time: 86400
+  with_items:
+    - wiringpi
+    - python-smbus
+
+- name: ensure directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0700
+    owner: root
+    group: root
+  with_items:
+    - /usr/share/clusterhat/python
+
+- name: copy python scripts
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: "clusterhat", dest: "/sbin/clusterhat", mode: 0700 }
+    - { src: "xra1200.py", dest: "/usr/share/clusterhat/python", mode: 0600 }

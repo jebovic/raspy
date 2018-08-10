@@ -1,0 +1,5 @@
+image:
+  repo: "arm32v7/kapacitor"
+  tag: "latest"
+influxURL: "http://influxdb-influxdb.ilovemonitoring:8086"
+

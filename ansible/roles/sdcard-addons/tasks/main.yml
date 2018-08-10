@@ -10,6 +10,12 @@
     path: "{{ raspy_sd_rootfs }}"
   register: rootfs
 
+- name: find PARTUUID
+  become: true
+  become_method: sudo
+  command: "blkid -s PARTUUID -o value {{ raspy_sd_rootfs_partition }}"
+  register: partuuid
+
 - name: enable ssh
   template:
     src: ssh.j2
@@ -64,11 +70,6 @@
 - name: Add hostname in hosts file
   become: true
   become_method: sudo
-  replace:
-    path: /etc/hosts
-    regexp: '(\s+)raspberrypi(\s+.*)?$'
-    replace: "'\1{{ raspy_hostname }}\2'"
-
   lineinfile:
     dest: "{{ raspy_sd_rootfs }}/etc/hosts"
     regexp: "^127.0.1.1"

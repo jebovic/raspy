@@ -29,3 +29,7 @@
     cache_valid_time: 86400
   with_items: "{{ kubeadm_packages }}"
   when: kubeadm_repo_installed|success
+
+- name: disable swapoff
+  shell: "dphys-swapfile swapoff && dphys-swapfile uninstall && update-rc.d dphys-swapfile remove"
+
